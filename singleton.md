@@ -1,7 +1,9 @@
-##单例模式的定义
+#单例模式
+
+###单例模式的定义
 保证一个类仅有一个实例，并提供一个访问它的全局访问点。
 
-##实现单例模式
+###实现单例模式
 用一个变量标记当前是否已经为某个类创建过对象，如果是，则在下一次获取类的实例时，直接返回之前创建的对象。
 ```js
 var Singleton = function (name) {
@@ -53,7 +55,7 @@ alert(a === b); //true
 ```
 这两种方法相对简单，但是有一个问题，增加了这个类的不透明性，Singleton类的使用者必须知道这个单例类。
 
-##透明的单例模式
+###透明的单例模式
 ```js
 var createDiv = (function () {
     var instance;
@@ -87,7 +89,7 @@ var b = new createDiv('kit');
 2.实例单例的构造函数，负责了两件事：第一保证只有一个实例，创建对象和执行init()方法。    
 
 
-##用代理实现单例模式
+###用代理实现单例模式
 ```js
 //首先是一个普通的创建div的类
 var CreateDiv = function (html) {
@@ -117,7 +119,7 @@ proxySingletonCreateDiv('bbb');
 proxySingletonCreateDiv('ccc');
 ```
 
-##javascript里的单例模式
+###javascript里的单例模式
 全局变量不是单例模式，但是我们要经常会把全局变量当成单例模式，比如：
 ```js
 var a = {};
@@ -127,7 +129,7 @@ window;
 ```
 单例模式的核心是只有一个实例，并提供全局访问，但是全局变量会造成命名空间污染。
 
-##惰性单例
+###惰性单例
 惰性单例是指在需要的时候才创建对象实例。     
 这种技术在实际开发中很有作用，比如制作一个悬浮的登陆框。   
 
@@ -164,7 +166,7 @@ document.getElementById('loginBtn').onclick = function () {
 };
 ```
 
-##jQuery one
+###jQuery one
 ```html
 <button id="btn1">按钮一</button>
 <button id="btn2">按钮二</button>
@@ -191,7 +193,7 @@ btn1.on('click', console1);
 btn2.one('click', console2);
 ```
 
-##_.once
+###_.once
 underscorejs也有实现单例的方法，我们拿之前的例子改一下。
 ```html
 <button id="loginBtn">登陆按钮</button>
