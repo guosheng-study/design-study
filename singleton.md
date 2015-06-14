@@ -26,3 +26,30 @@ var b = Singleton.getInstance('sven2');
 
 alert(a === b); //true
 ```
+或者：
+```js
+var Singleton = function (name) {
+    this.name = name;
+};
+
+Singleton.prototype.getName = function () {
+    console.log(this.name);
+};
+
+Singleton.getInstance = (function () {
+    var instance = null; //标记是否已经实例化
+    return function (name) {
+        if (!instance) {
+            instance = new Singleton(name);
+        }
+        return instance;
+    }
+}());
+
+var a = Singleton.getInstance('sven1');
+var b = Singleton.getInstance('sven2');
+
+alert(a === b); //true
+```
+
+##实现单例模式
