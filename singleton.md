@@ -128,5 +128,38 @@ window;
 单例模式的核心是只有一个实例，并提供全局访问，但是全局变量会造成命名空间污染。
 
 ##惰性单例
-惰性单例是指在需要的时候才创建对象实例。
-这种技术在实际开发中很有作用，比如制作一个悬浮的登陆框。
+惰性单例是指在需要的时候才创建对象实例。     
+这种技术在实际开发中很有作用，比如制作一个悬浮的登陆框。   
+
+事先页面只有登陆按钮，用于触发事件。
+```html
+<body>
+    <button id="loginBtn">登录</button>
+</body>
+```
+js部分：
+```js
+//负责实现单例
+var getSingle = function (fn) {
+    var result;
+    return function () {
+        return result || (result = fn.apply(this, arguments));
+    }
+};
+
+//负责创建登陆框
+var createLoginlayer = function () {
+    var div = document.createElement('div');
+    div.innerHTML = '我是一个登陆框';
+    document.body.appendChild(div);
+    return div;
+};
+
+//生成一个单例对象
+var createSingleLoginYayer = getSingle(createLoginlayer);
+
+//当有需要的时候创建对象，并具只创建一次
+document.getElementById('loginBtn').onclick = function () {
+    createSingleLoginYayer();
+};
+```
