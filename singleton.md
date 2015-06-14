@@ -85,3 +85,34 @@ var b = new createDiv('kit');
 虽然这样子完成了一个透明的单例类，但它同样有一些缺点。       
 1.程序复杂，使用自执行的匿名函数和闭包，让这个匿名函数返回真正的单例类。      
 2.实例单例的构造函数，负责了两件事：第一保证只有一个实例，创建对象和执行init()方法。    
+
+
+##用代理实现单例模式
+```js
+//首先是一个普通的创建div的类
+var CreateDiv = function (html) {
+    this.html = html;
+    this.init();
+};
+
+CreateDiv.prototype.init = function () {
+    var div = document.createElement('div');
+    div.innerHTML = this.html;
+    document.body.appendChild(div);
+};
+
+//负责管理单例的逻辑移到这个代理类
+var proxySingletonCreateDiv = (function () {
+    var instance;
+    return function (html) {
+        if (!instance) {
+            instance = new CreateDiv(html);
+        }
+        return instance;
+    };
+}());
+
+proxySingletonCreateDiv('aaa');
+proxySingletonCreateDiv('bbb');
+proxySingletonCreateDiv('ccc');
+```
