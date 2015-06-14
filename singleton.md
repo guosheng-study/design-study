@@ -54,3 +54,31 @@ alert(a === b); //true
 这两种方法相对简单，但是有一个问题，增加了这个类的不透明性，Singleton类的使用者必须知道这个单例类。
 
 ##透明的单例模式
+```js
+var createDiv = (function () {
+    var instance;
+
+    var CreateDiv = function (html) {
+
+        if (instance) {
+            return instance;
+        }
+
+        this.html = html;
+        this.init();
+
+        return instance = this;
+    };
+
+    CreateDiv.prototype.init = function () {
+        var div = document.createElement('div');
+        div.innerHTML = this.html;
+        document.body.appendChild(div);
+    };
+
+    return CreateDiv;
+}());
+
+var a = new createDiv('hello');
+var b = new createDiv('kit');
+```
