@@ -51,5 +51,6 @@ var b = Singleton.getInstance('sven2');
 
 alert(a === b); //true
 ```
+这两种方法相对简单，但是有一个问题，增加了这个类的不透明性，Singleton类的使用者必须知道这个单例类。
 
-##实现单例模式
+##透明的单例模式
