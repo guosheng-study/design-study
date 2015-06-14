@@ -190,3 +190,30 @@ btn1.on('click', console1);
 //只执行一次
 btn2.one('click', console2);
 ```
+
+##_.once
+underscorejs也有实现单例的方法，我们拿之前的例子改一下。
+```html
+<button id="loginBtn">登陆按钮</button>
+<script src="http://cdn.bootcss.com/underscore.js/1.8.2/underscore-min.js"></script>
+<script src="008.js"></script>
+</body>
+```
+008.js如下：
+```js
+//负责创建登陆框
+var createLoginlayer = function () {
+    var div = document.createElement('div');
+    div.innerHTML = '我是一个登陆框';
+    document.body.appendChild(div);
+    return div;
+};
+
+//生成一个单例对象
+var createSingleLoginYayer = _.once(createLoginlayer);
+
+//当有需要的时候创建对象，并具只创建一次
+document.getElementById('loginBtn').onclick = function () {
+    createSingleLoginYayer();
+};
+```
