@@ -219,3 +219,6 @@ document.getElementById('loginBtn').onclick = function () {
     createSingleLoginYayer();
 };
 ```
+
+###学习者
+guosheng学于2015.06.14 - Q:9169775
