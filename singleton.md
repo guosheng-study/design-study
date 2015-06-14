@@ -163,3 +163,30 @@ document.getElementById('loginBtn').onclick = function () {
     createSingleLoginYayer();
 };
 ```
+
+##jQuery one
+```html
+<button id="btn1">按钮一</button>
+<button id="btn2">按钮二</button>
+<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="007.js"></script>
+```
+007.js如下：
+```js
+var console1 = function () {
+    console.log(1);
+};
+
+var console2 = function () {
+    console.log(2);
+};
+
+var btn1 = $('#btn1');
+var btn2 = $('#btn2');
+
+//每次一次，执行一次
+btn1.on('click', console1);
+
+//只执行一次
+btn2.one('click', console2);
+```
