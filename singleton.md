@@ -116,3 +116,13 @@ proxySingletonCreateDiv('aaa');
 proxySingletonCreateDiv('bbb');
 proxySingletonCreateDiv('ccc');
 ```
+
+##javascript里的单例模式
+全局变量不是单例模式，但是我们要经常会把全局变量当成单例模式，比如：
+```js
+var a = {};
+
+//浏览器自带了一个单例对象。
+window;
+```
+单例模式的核心是只有一个实例，并提供全局访问，但是全局变量会造成命名空间污染。
