@@ -221,4 +221,5 @@ document.getElementById('loginBtn').onclick = function () {
 ```
 
 ###学习者
-guosheng学于2015.06.14 - Q:9169775
+guosheng学于2015.06.14 - Q:9169775   
+（勤能补拙是良策,一分辛苦一分才）
