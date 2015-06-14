@@ -5,7 +5,7 @@
 ```js
 var Singleton = function (name) {
     this.name = name;
-    this.instance = null;
+    this.instance = null; //标记是否已经实例化
 };
 
 Singleton.prototype.getName = function () {
@@ -14,9 +14,10 @@ Singleton.prototype.getName = function () {
 
 Singleton.getInstance = function (name) {
     if (!this.instance) {
+        //没有实例，实例化一下
         this.instance = new Singleton(name);
     }
-    return this.instance;
+    return this.instance; //返回实例
 }
 
 var a = Singleton.getInstance('sven1');
