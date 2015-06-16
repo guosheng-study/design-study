@@ -104,8 +104,8 @@ var setStrategies = {
         return salary * 2;
     }
 };
-//定义奖金类
 
+//定义奖金类
 var calculateBonus = function (level, salary) {
     return setStrategies[level](salary);
 };
