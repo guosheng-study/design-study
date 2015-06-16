@@ -91,6 +91,7 @@ performanceC.prototype.calculate = function (salary) {
 上面的代码是对传统对象语言的模仿，接下去看一下javascript版的策略模式。
 
 ###javascript版的策略模式
+```js
 //定义策略组
 var setStrategies = {
     S: function (salary) {
@@ -111,5 +112,5 @@ var calculateBonus = function (level, salary) {
 
 calculateBonus('B', 6000); //12000
 calculateBonus('S', 8000); //32000
-
+```
 
