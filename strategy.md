@@ -28,7 +28,7 @@ calculateBonus('S', 8000); //32000
 ```
 
 需求已经实现，但是以有下缺点：
-1.calculateBonus包含了多个if
-2.calculateBonus如果要增加C,D评级，就得改函数体内代码
-3.算法复用性差。
+1.calculateBonus包含了多个if         
+2.calculateBonus如果要增加C,D评级，就得改函数体内代码         
+3.算法复用性差。          
 
