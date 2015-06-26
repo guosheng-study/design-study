@@ -60,3 +60,7 @@ proxyImage.setSrc('https://www.baidu.com/img/bdlogo.png');
 3.代理和本体的接口要保持一致性。    
 用户可以放心的使用代理，他只关心是否能得到想要的结果；    
 在任何用本体的地方都可以替换成使用代理。   
+
+###代理的意义
+一个函数仅一个引起它变化的原因，myImage只负责把本体加上src,而proxyImage只负责loading图，完了之后交给本体。
+注：单一职责原则。
