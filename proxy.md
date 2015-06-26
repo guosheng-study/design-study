@@ -56,3 +56,7 @@ var proxyImage = (function () {
 //使用代理加载图片
 proxyImage.setSrc('https://www.baidu.com/img/bdlogo.png');
 ```
+
+3.代理和本体的接口要保持一致性。    
+用户可以放心的使用代理，他只关心是否能得到想要的结果；    
+在任何用本体的地方都可以替换成使用代理。   
