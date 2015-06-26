@@ -7,7 +7,7 @@
 把一些开销很大的对象，延迟到真正需要它的时候才去创建。         
 
 ###用虚拟代理实现图片懒加载
-1.不用代理的情况，直接给图片设置src
+1.不用代理的情况，直接给图片设置src，代理如下，如果图片很大，那么会有一段空白的时间。
 ```js
 var myImage = (function () {
     var imgNode = document.createElement('img');
@@ -21,4 +21,38 @@ var myImage = (function () {
 }());
 
 myImage.setSrc('https://www.baidu.com/img/bdlogo.png');
+```
+
+2.引入代理
+```js
+var myImage = (function () {
+    var imgNode = document.createElement('img');
+    document.body.appendChild(imgNode);
+
+    return {
+        setSrc: function (src) {
+            imgNode.src = src;
+        }
+    };
+}());
+
+//增加了代理
+var proxyImage = (function () {
+
+    var img = new Image();
+
+    img.onload = function () {
+        myImage.setSrc(this.src);
+    }
+
+    return {
+        setSrc: function (src) {
+            myImage.setSrc('http://img.lanrentuku.com/img/allimg/1212/5-121204193R0.gif');
+            img.src = src;
+        }
+    };
+}());
+
+//使用代理加载图片
+proxyImage.setSrc('https://www.baidu.com/img/bdlogo.png');
 ```
