@@ -151,3 +151,53 @@ console.log(protyMult(2, 3)); //调用缓存里的值
 console.log(protyMult(2, 3)); //调用缓存里的值
 ```
 缓存代理也可以应用在ajax分页的数据缓存中。
+
+
+###用户高阶函数动态创建代理
+```js
+//实现阶乘
+var mult = function () {
+    console.log('开始计算阶乘：' + Array.prototype.join.call(arguments, ','));
+    var a = 1;
+    for (var i = 0, l = arguments.length; i < l; i++) {
+        a = a * arguments[i];
+    }
+
+    return a;
+};
+
+//实现累加
+var plus = function () {
+    console.log('开始计算累加：' + Array.prototype.join.call(arguments, ','));
+    var a = 0;
+    for (var i = 0, l = arguments.length; i < l; i++) {
+        a = a + arguments[i];
+    }
+    return a;
+}
+
+var creatProxyFactory = function (fn) {
+
+    console.log(fn);
+    var cache = {};
+    return function () {
+        var args = Array.prototype.join.call(arguments, ',');
+        if (args in cache) {
+            return cache[args];
+        }
+        return cache[args] = fn.apply(this, arguments);
+    }
+};
+
+
+var proxyMult = creatProxyFactory(mult);
+var proxyPlus = creatProxyFactory(plus);
+
+console.log(proxyMult(2, 3)); //使用mult方法
+console.log(proxyMult(2, 3)); //调用缓存里的值
+console.log(proxyMult(2, 3)); //调用缓存里的值
+
+console.log(proxyPlus(2, 3)); //使用plus方法
+console.log(proxyPlus(2, 3)); //调用缓存里的值
+console.log(proxyPlus(2, 3)); //调用缓存里的值
+```
