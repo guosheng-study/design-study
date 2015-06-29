@@ -115,3 +115,38 @@ for (var i = 0, c; c = checkbox[i++];) {
     }
 };
 ```
+
+###缓存代理
+缓存代理可以为一些开销大的运算结果提供暂时的存储，在下次运算时，如果传递进来的参数跟之前一致，则可以直接返回前面存储的运算结果。
+
+```js
+//实现阶乘
+var mult = function () {
+    console.log('开始计算阶乘：' + Array.prototype.join.call(arguments, ','));
+    var a = 1;
+    for (var i = 0, l = arguments.length; i < l; i++) {
+        a = a * arguments[i];
+    }
+
+    return a;
+};
+
+console.log(mult(2, 3));
+console.log(mult(2, 3, 4));
+
+//加入缓存代理
+var protyMult = (function () {
+    var cache = {};
+    return function () {
+        var args = Array.prototype.join.call(arguments, ',');
+        if (args in cache) {
+            return cache[args];
+        }
+        return cache[args] = mult.apply(this, arguments);
+    }
+}());
+
+console.log(protyMult(2, 3)); //使用mult方法
+console.log(protyMult(2, 3)); //调用缓存里的值
+console.log(protyMult(2, 3)); //调用缓存里的值
+```
