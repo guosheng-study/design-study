@@ -150,3 +150,4 @@ console.log(protyMult(2, 3)); //使用mult方法
 console.log(protyMult(2, 3)); //调用缓存里的值
 console.log(protyMult(2, 3)); //调用缓存里的值
 ```
+缓存代理也可以应用在ajax分页的数据缓存中。
