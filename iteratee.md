@@ -12,3 +12,16 @@ $.each([11, 22, 23], function (index, n) {
     console.log(index, n); // index为下标，n为值
 });
 ```
+
+###实现自己的迭代器
+```js
+var each = function (ary, callback) {
+    for (var i = 0, l = ary.length; i < l; i++) {
+        callback.call(ary, i, ary[i]);
+    }
+};
+
+each([11, 22, 33], function (i, n) {
+    console.log(i, n);
+});
+```
