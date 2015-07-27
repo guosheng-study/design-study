@@ -25,3 +25,18 @@ each([11, 22, 33], function (i, n) {
     console.log(i, n);
 });
 ```
+
+###判断两个数组是否一样
+···js
+function compare(arr1, arr2) {
+    var flag = arr1.length === arr2.length ? true : false;
+
+    each(arr1, function (index, val) {
+        if (val !== arr2[index]) {
+            flag = false;
+        }
+    });
+
+    return flag;
+}
+```
