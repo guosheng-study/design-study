@@ -82,6 +82,42 @@ function compare(arr1, arr2) {
 }
 ```
 
+###迭代类数组对象和字面象对象
+```js
+var each = function (obj, callback) {
+    var value,
+        i = 0,
+        length = obj.length;
+
+    if (length) {
+        for (; i < length; i++) {
+            if (callback.call(obj, i, obj[i]) === !1) {
+                break;
+            }
+        }
+    } else {
+        for (i in obj) {
+            if (callback.call(obj, i, obj[i]) === !1) {
+                break;
+            }
+        }
+    }
+};
+
+each(['a', 'b', 'c', 'd'], function (index, value) {
+    console.log(index, value);
+});
+
+each({
+        a: '1',
+        b: '2',
+        c: '3'
+    },
+    function (index, value) {
+        console.log(index, value);
+    });
+```
+
 
 
 
