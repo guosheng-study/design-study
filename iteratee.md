@@ -64,6 +64,24 @@ var iterator = function (obj) {
 };
 ```
 
+###判断两个数组是否一样
+```js
+function compare(arr1, arr2) {
+    var iterator1 = iterator(arr1),
+        iterator2 = iterator(arr2),
+        flag = true;
+
+    while (!iterator1.isDone() && !iterator2.isDone()) {
+        if (iterator1.getCurrItem() !== iterator2.getCurrItem()) {
+            flag = false;
+        }
+        iterator1.next();
+        iterator2.next();
+    }
+    return flag;
+}
+```
+
 
 
 
