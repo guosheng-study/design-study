@@ -116,6 +116,12 @@ each({
     function (index, value) {
         console.log(index, value);
     });
+
+(function () {
+    each(arguments, function (index, value) {
+        console.log(index, value);
+    });
+}(1, 2, 3, 4, '5'));
 ```
 
 
