@@ -64,7 +64,7 @@ var iterator = function (obj) {
 };
 ```
 
-###判断两个数组是否一样
+###外部迭代器判断两个数组是否一样
 ```js
 function compare(arr1, arr2) {
     var iterator1 = iterator(arr1),
