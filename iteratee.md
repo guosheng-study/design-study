@@ -31,11 +31,13 @@ each([11, 22, 33], function (i, n) {
 function compare(arr1, arr2) {
     var flag = arr1.length === arr2.length ? true : false;
 
-    each(arr1, function (index, val) {
-        if (val !== arr2[index]) {
-            flag = false;
-        }
-    });
+    if (flag) {
+        each(arr1, function (index, val) {
+            if (val !== arr2[index]) {
+                flag = false;
+            }
+        });
+    }
 
     return flag;
 }
