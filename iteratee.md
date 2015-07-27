@@ -43,3 +43,27 @@ function compare(arr1, arr2) {
 }
 
 ```
+
+
+###外部迭代器
+外部迭代器必须显式的请求迭代下一个元素
+```js
+var iterator = function (obj) {
+    var current = 0;
+    return {
+        next: function () {
+            current += 1;
+        },
+        isDone: function () {
+            return current >= obj.length;
+        },
+        getCurrItem = function () {
+            return obj[current];
+        }
+    };
+};
+```
+
+
+
+
