@@ -27,7 +27,7 @@ each([11, 22, 33], function (i, n) {
 ```
 
 ###判断两个数组是否一样
-···js
+```js
 function compare(arr1, arr2) {
     var flag = arr1.length === arr2.length ? true : false;
 
@@ -40,4 +40,4 @@ function compare(arr1, arr2) {
     return flag;
 }
 
-···
+```
