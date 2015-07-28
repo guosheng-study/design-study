@@ -138,6 +138,7 @@ reverseEach(['a', 'b', 'c', 'd'], function (index, val) {
 ```
 
 ###终止迭代器
+```js
 var each = function (ary, callback) {
     for (var i = 0, l = ary.length; i < l; i++) {
         if (callback.call(ary, i, ary[i]) === false) {
@@ -152,6 +153,7 @@ each([1, 2, 3, 4, 5, 6, 7], function (index, n) {
     }
     console.log(n);
 });
+```
 
 
 
