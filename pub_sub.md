@@ -30,3 +30,30 @@ document.body.addEventListener('click', function () {
 
 document.body.click();
 ```
+
+###先订阅后发布
+```js
+var salesOffices = {
+    clientList: [], //缓存列表
+    listen: function (fn) {
+        this.clientList.push(fn);
+    },
+    trigger: function () {
+        for (var i = 0, fn; fn = this.clientList[i++];) {
+            fn.apply(this, arguments);
+        }
+    }
+};
+
+//订阅
+salesOffices.listen(function (priec, squareMeter) {
+    console.log(priec, squareMeter);
+});
+salesOffices.listen(function (priec, squareMeter) {
+    console.log(priec, squareMeter);
+});
+
+//发布
+salesOffices.trigger(20000, 88);
+salesOffices.trigger(30000, 100);
+```
