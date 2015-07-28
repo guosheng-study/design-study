@@ -125,6 +125,7 @@ each({
 ```
 
 ###倒序迭代器
+```js
 var reverseEach = function (arr, cb) {
     for (var l = arr.length - 1; l >= 0; l--) {
         cb.call(arr, l, arr[l]);
@@ -134,5 +135,5 @@ var reverseEach = function (arr, cb) {
 reverseEach(['a', 'b', 'c', 'd'], function (index, val) {
     console.log(index, val);
 });
-
+```
 
