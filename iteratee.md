@@ -124,6 +124,15 @@ each({
 }(1, 2, 3, 4, '5'));
 ```
 
+###倒序迭代器
+var reverseEach = function (arr, cb) {
+    for (var l = arr.length - 1; l >= 0; l--) {
+        cb.call(arr, l, arr[l]);
+    }
+};
 
+reverseEach(['a', 'b', 'c', 'd'], function (index, val) {
+    console.log(index, val);
+});
 
 
