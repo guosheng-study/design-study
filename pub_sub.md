@@ -13,3 +13,20 @@ document.body.addEventListener('click', function () {
 
 document.body.click();
 ```
+
+###增加订阅
+```js
+document.body.addEventListener('click', function () {
+    alert(2);
+}, false);
+
+document.body.addEventListener('click', function () {
+    alert(3);
+}, false);
+
+document.body.addEventListener('click', function () {
+    alert(4);
+}, false);
+
+document.body.click();
+```
