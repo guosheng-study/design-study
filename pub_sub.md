@@ -133,3 +133,70 @@ salesOffices.trigger('squareMeter110', 30000);
 ```
 
 
+###取消订阅
+```js
+function Observer() {
+    this.clientList = [];
+}
+Observer.prototype = {
+    listen: function (key, fn) {
+        this.clientList[key] = this.clientList[key] || [];
+        this.clientList[key].push(fn);
+    },
+    trigger: function () {
+        var key = Array.prototype.shift.call(arguments),
+            fns = this.clientList[key];
+
+        if (fns) {
+            for (var i = 0, fn; fn = fns[i++];) {
+                fn.apply(this, arguments);
+            }
+        }
+    },
+    remove: function (key, fn) {
+        var fns = this.clientList[key];
+
+        //消息没有订阅，直接返回
+        if (!fns) {
+            return false;
+        }
+
+
+        if (!fn) {
+            fns.length = 0;
+        } else {
+            for (var i = fns.length - 1; i >= 0; i--) {
+                var _fn = fns[i];
+                if (_fn = fn) {
+                    fns.splice(1, 1);
+                }
+            };
+        }
+
+    }
+};
+
+salesOffices = new Observer();
+
+
+//订阅88平米的信息
+salesOffices.listen('squareMeter88', function (priec) {
+    console.log('squareMeter88：' + priec);
+});
+
+//取消订阅
+salesOffices.remove('squareMeter88');
+
+
+//订阅110平米的信息
+salesOffices.listen('squareMeter110', function (priec) {
+    console.log('squareMeter110：' + priec);
+});
+
+//发布
+salesOffices.trigger('squareMeter88', 20000);
+salesOffices.trigger('squareMeter110', 30000);
+```
+
+
+
