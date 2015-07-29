@@ -92,3 +92,44 @@ salesOffices.listen('squareMeter110', function (priec) {
 salesOffices.trigger('squareMeter88', 20000);
 salesOffices.trigger('squareMeter110', 30000);
 ```
+
+###发布订阅查式的通用实现
+```js
+function Observer() {
+    this.clientList = [];
+}
+Observer.prototype = {
+    listen: function (key, fn) {
+        this.clientList[key] = this.clientList[key] || [];
+        this.clientList[key].push(fn);
+    },
+    trigger: function () {
+        var key = Array.prototype.shift.call(arguments),
+            fns = this.clientList[key];
+
+        if (fns) {
+            for (var i = 0, fn; fn = fns[i++];) {
+                fn.apply(this, arguments);
+            }
+        }
+    }
+};
+
+salesOffices = new Observer();
+
+
+//订阅88平米的信息
+salesOffices.listen('squareMeter88', function (priec) {
+    console.log('squareMeter88：' + priec);
+});
+//订阅110平米的信息
+salesOffices.listen('squareMeter110', function (priec) {
+    console.log('squareMeter110：' + priec);
+});
+
+//发布
+salesOffices.trigger('squareMeter88', 20000);
+salesOffices.trigger('squareMeter110', 30000);
+```
+
+
