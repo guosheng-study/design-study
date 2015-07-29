@@ -57,3 +57,38 @@ salesOffices.listen(function (priec, squareMeter) {
 salesOffices.trigger(20000, 88);
 salesOffices.trigger(30000, 100);
 ```
+
+
+###订阅只感兴趣的信息
+```js
+var salesOffices = {
+    clientList: [], //缓存列表
+    listen: function (key, fn) {
+        this.clientList[key] = this.clientList[key] || [];
+        this.clientList[key].push(fn);
+    },
+    trigger: function () {
+        var key = Array.prototype.shift.call(arguments),
+            fns = this.clientList[key];
+
+        if (fns) {
+            for (var i = 0, fn; fn = fns[i++];) {
+                fn.apply(this, arguments);
+            }
+        }
+    }
+};
+
+//订阅88平米的信息
+salesOffices.listen('squareMeter88', function (priec) {
+    console.log('squareMeter88：' + priec);
+});
+//订阅110平米的信息
+salesOffices.listen('squareMeter110', function (priec) {
+    console.log('squareMeter110：' + priec);
+});
+
+//发布
+salesOffices.trigger('squareMeter88', 20000);
+salesOffices.trigger('squareMeter110', 30000);
+```
