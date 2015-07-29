@@ -246,3 +246,71 @@ login.succ(function (data) {
 });
 ```
 
+
+###用订阅发布者模式实现
+```js
+function Observer() {
+    this.clientList = [];
+}
+Observer.prototype = {
+    listen: function (key, fn) {
+        this.clientList[key] = this.clientList[key] || [];
+        this.clientList[key].push(fn);
+    },
+    trigger: function () {
+        var key = Array.prototype.shift.call(arguments),
+            fns = this.clientList[key];
+
+        if (fns) {
+            for (var i = 0, fn; fn = fns[i++];) {
+                fn.apply(this, arguments);
+            }
+        }
+    },
+    remove: function (key, fn) {
+        var fns = this.clientList[key];
+
+        //消息没有订阅，直接返回
+        if (!fns) {
+            return false;
+        }
+
+
+        if (!fn) {
+            fns.length = 0;
+        } else {
+            for (var i = fns.length - 1; i >= 0; i--) {
+                var _fn = fns[i];
+                if (_fn = fn) {
+                    fns.splice(1, 1);
+                }
+            };
+        }
+
+    }
+};
+
+
+var login = new Observer();
+
+login.listen('loginSucc', function (res) {
+    console.log('header', res);
+});
+
+login.listen('loginSucc', function (res) {
+    console.log('cart', res);
+});
+
+login.listen('loginSucc', function (res) {
+    console.log('nav', res);
+});
+
+setTimeout(function () {
+    var res = {
+        id: 1,
+        name: 'xiaoming'
+    };
+    login.trigger('loginSucc', res);
+}, 10);
+```
+
