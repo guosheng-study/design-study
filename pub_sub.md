@@ -198,5 +198,51 @@ salesOffices.trigger('squareMeter88', 20000);
 salesOffices.trigger('squareMeter110', 30000);
 ```
 
+###普通登陆后刷新
+```js
+var login = {
+    succ: function (fn) {
+        setTimeout(function () {
+            var res = {
+                id: 1,
+                name: 'xiaoming'
+            };
 
+            fn.call(this, res);
+
+        }, 10);
+    }
+}
+
+
+var header = (function () {
+    return {
+        refresh: function (data) {
+            console.log('header', data);
+        }
+    }
+}());
+
+var cart = (function () {
+    return {
+        refresh: function (data) {
+            console.log('cart', data);
+        }
+    }
+}());
+var nav = (function () {
+    return {
+        refresh: function (data) {
+            console.log('nave', data);
+        }
+    }
+}());
+
+
+login.succ(function (data) {
+    header.refresh(data);
+    cart.refresh(data);
+    nav.refresh(data);
+});
+```
 
