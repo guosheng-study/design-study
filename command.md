@@ -42,3 +42,28 @@ var refreshMenuBarCommand3 = new RefreshMenuBarCommand(menuBar, 'del');
 //安装命令
 setCommand(button1, refreshMenuBarCommand2);
 ```
+
+###javascript里的命令模式
+```js
+var button1 = document.getElementById('button1');
+
+var bindClick = function (button, fnc) {
+    button.onclick = fnc;
+};
+
+var menuBar = {
+    refresh: function () {
+        console.log('刷新菜单目录');
+    },
+    add : function(){
+        console.log('增加');
+    },
+    del : function(){
+        console.log('删除'); 
+    }
+};
+
+bindClick(button1, menuBar.add);
+```
+
+
