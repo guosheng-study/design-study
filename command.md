@@ -66,4 +66,32 @@ var menuBar = {
 bindClick(button1, menuBar.add);
 ```
 
+###用闭包实现命令模式
+```js
+var button1 = document.getElementById('button1');
+
+var setCommand = function (button, func) {
+    button.onclick = function () {
+        func();
+    };
+};
+
+var menuBar = {
+    refresh: function () {
+        console.log('刷新主菜单');
+    }
+};
+
+var RefreshMenuBarCommand = function (receiver) {
+    return function () {
+        receiver.refresh();
+    }
+};
+
+var refreshMenuBarCommand = RefreshMenuBarCommand(menuBar);
+
+setCommand(button1, refreshMenuBarCommand);
+```
+
+
 
